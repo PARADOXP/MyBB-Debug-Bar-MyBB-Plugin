@@ -1,0 +1,121 @@
+{
+  "group": {
+    "name": "mybb_debugbar",
+    "title": "MyBB Debug Bar Settings",
+    "description": "Settings for the MyBB Debug Bar plugin."
+  },
+  "settings": {
+    "enabled": {
+      "title": "Enable Debug Bar",
+      "description": "Enable or disable the MyBB Debug Bar on all pages.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 1
+    },
+    "allowed_groups": {
+      "title": "Usergroups that can see the bar",
+      "description": "Select which usergroups can see the debug bar. Hold Ctrl/Cmd to select multiple. Leave all deselected to allow everyone.",
+      "optionscode": "groupselect",
+      "value": "4",
+      "disporder": 2
+    },
+    "show_queries": {
+      "title": "Show DB Query Count",
+      "description": "Display the number of database queries executed on the current page.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 3
+    },
+    "show_memory": {
+      "title": "Show Memory Usage",
+      "description": "Display PHP memory usage for the current page.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 4
+    },
+    "show_console": {
+      "title": "Show Console Tab",
+      "description": "Show a Console tab that captures JavaScript console.log/warn/error calls and PHP debugbar_log() output.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 5
+    },
+    "show_debug": {
+      "title": "Show Debug Tab",
+      "description": "Enable the Debug tab that displays output from debugbar_debug() calls.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 6
+    },
+    "show_debug_always": {
+      "title": "Show Debug Tab Always",
+      "description": "When enabled, the Debug tab will always be shown in the panel. When disabled, it only appears when debugbar_debug() has been called.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 7
+    },
+    "log_to_db": {
+      "title": "Log errors to DB",
+      "description": "When enabled, PHP errors captured by the debug bar will be logged to the database for later review.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 8
+    },
+    "drag_enabled": {
+      "title": "Enable Draggable Icon",
+      "description": "Allow the debug icon to be dragged and repositioned on the page. When disabled, the icon stays in its default position.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": 9
+    },
+    "js_events": {
+      "title": "JS Event Auto-Capture",
+      "description": "Auto-capture DOM events (click, mousemove, hover, touch, scroll, resize, keyboard, form, drag, animation/transition). Mousemove is throttled to every 500ms.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 10
+    },
+    "js_ajax": {
+      "title": "JS AJAX/Fetch Interception",
+      "description": "Intercept XMLHttpRequest and fetch() calls to debug network requests and responses.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 11
+    },
+    "js_errors": {
+      "title": "JS Error Capture",
+      "description": "Capture JavaScript runtime errors and unhandled promise rejections.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 12
+    },
+    "js_timers": {
+      "title": "JS Timer Capture",
+      "description": "Capture setTimeout and setInterval calls.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 13
+    },
+    "js_storage": {
+      "title": "JS Storage Capture",
+      "description": "Capture localStorage/sessionStorage changes across tabs.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 14
+    },
+    "js_performance": {
+      "title": "JS Performance Monitor",
+      "description": "Monitor memory usage (every 10s) and network connection info. Requires Chrome DevTools memory API.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": 15
+    },
+    "debug_custom_code": {
+      "title": "Custom Debug Code (PHP)",
+      "description": "Write PHP code here to execute debug calls without editing plugin files. Use debugbar_debug() function. Example: debugbar_debug('My Variable', $myvar, 'variable'); Put each statement on a new line ending with ;",
+      "optionscode": "phptextarea",
+      "value": "",
+      "disporder": 16
+    }
+  }
+}

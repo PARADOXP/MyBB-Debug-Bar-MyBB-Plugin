@@ -1,0 +1,825 @@
+/* ============================================
+   MyBB Debug Bar - Styles
+   ============================================ */
+
+/* --- Scrollbar --- */
+.debugbar-pane::-webkit-scrollbar {
+    width: 8px;
+}
+.debugbar-pane::-webkit-scrollbar-track {
+    background: #1a1a2e;
+    border-radius: 4px;
+}
+.debugbar-pane::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4285f4, #8b5cf6, #ec4899, #6366f1, #f59e0b, #22c55e, #ef4444);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.debugbar-pane::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #60a5fa, #a78bfa, #f472b6, #818cf8, #fbbf24, #4ade80, #f87171);
+}
+.debugbar-pane {
+    scrollbar-width: thin;
+    scrollbar-color: #8b5cf6 #1a1a2e;
+}
+
+/* --- Toggle Icon --- */
+#debugbar-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    color: #00ff88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+    touch-action: none;
+}
+
+#debugbar-toggle:active {
+    cursor: grabbing;
+}
+
+#debugbar-toggle.debugbar-dragging,
+#debugbar-panel.debugbar-dragging {
+    transition: none !important;
+}
+
+#debugbar-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+#debugbar-toggle-icon {
+    line-height: 1;
+}
+
+/* --- Badge --- */
+#debugbar-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 18px;
+    text-align: center;
+    padding: 0 4px;
+    font-family: Arial, sans-serif;
+}
+
+.debugbar-badge-error {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.debugbar-badge-ok {
+    background: #555;
+    color: #ccc;
+}
+
+/* --- Panel --- */
+#debugbar-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 99998;
+    width: 420px;
+    max-height: 65vh;
+    background: #1a1a2e;
+    border: 1px solid #2d2d5e;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 13px;
+    color: #e0e0e0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#debugbar-panel.debugbar-closed {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+}
+
+#debugbar-panel.debugbar-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* --- Panel Header --- */
+#debugbar-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #16162a;
+    border-bottom: 1px solid #2d2d5e;
+    cursor: move;
+}
+
+#debugbar-panel-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #00ff88;
+}
+
+#debugbar-panel-close {
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+}
+
+#debugbar-panel-close:hover {
+    color: #e74c3c;
+}
+
+#debugbar-copy-btn {
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    margin-right: 8px;
+    transition: color 0.15s;
+}
+
+#debugbar-copy-btn:hover {
+    color: #00ff88;
+}
+
+#debugbar-copy-btn.debugbar-copied {
+    color: #00ff88;
+}
+
+#debugbar-copy-btn svg {
+    pointer-events: none;
+}
+
+/* --- Tabs --- */
+#debugbar-panel-tabs {
+    display: flex;
+    border-bottom: 1px solid #2d2d5e;
+    background: #16162a;
+}
+
+.debugbar-tab {
+    flex: 1;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #888;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.debugbar-tab:hover {
+    color: #ccc;
+}
+
+.debugbar-tab-active {
+    color: #00ff88;
+    border-bottom-color: #00ff88;
+}
+
+/* --- Content Area --- */
+#debugbar-panel-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+/* --- Panes --- */
+.debugbar-pane {
+    display: none;
+    padding: 10px 14px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.debugbar-pane-active {
+    display: block;
+}
+
+/* --- Section --- */
+.debugbar-section {
+    margin-bottom: 6px;
+}
+
+.debugbar-section-title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #2d2d5e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.debugbar-section-title-errors {
+    color: #e74c3c;
+    border-bottom-color: #e74c3c;
+}
+
+.debugbar-section-title-console {
+    color: #2ecc71;
+    border-bottom-color: #2ecc71;
+}
+
+.debugbar-section-body {
+    padding: 0;
+}
+
+/* --- Error Items --- */
+.debugbar-error-item {
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    background: rgba(231, 76, 60, 0.08);
+    border-left: 3px solid #e74c3c;
+    border-radius: 3px;
+}
+
+.debugbar-error-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 11px;
+}
+
+.debugbar-error-type {
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.debugbar-error-location {
+    color: #888;
+    font-size: 10px;
+}
+
+.debugbar-error-message {
+    color: #f0f0f0;
+    word-break: break-word;
+}
+
+.debugbar-error-trace {
+    margin: 6px 0 0 0;
+    padding: 6px 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    font-size: 10px;
+    color: #aaa;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+/* --- Console Items --- */
+.debugbar-console-item {
+    padding: 4px 8px;
+    margin-bottom: 2px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.debugbar-console-label {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.debugbar-console-log {
+    color: #aaa;
+}
+
+.debugbar-console-info {
+    color: #3498db;
+}
+
+.debugbar-console-warning {
+    color: #f39c12;
+}
+
+.debugbar-console-error {
+    color: #e74c3c;
+}
+
+.debugbar-console-sql {
+    color: #9b59b6;
+}
+
+.debugbar-console-debug {
+    color: #888;
+}
+
+.debugbar-console-message {
+    color: #e0e0e0;
+    word-break: break-word;
+}
+
+/* --- Info Items --- */
+.debugbar-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 12px;
+}
+
+.debugbar-info-label {
+    color: #888;
+    font-weight: bold;
+}
+
+.debugbar-info-value {
+    color: #e0e0e0;
+    text-align: right;
+    max-width: 60%;
+    word-break: break-word;
+}
+
+/* --- Debug Tab Section --- */
+.debugbar-section-title-debug {
+    color: #f39c12;
+    border-bottom-color: #f39c12;
+}
+
+/* --- Debug Items --- */
+.debugbar-debug-item {
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    background: rgba(243, 156, 18, 0.06);
+    border-left: 3px solid #f39c12;
+    border-radius: 3px;
+}
+
+.debugbar-debug-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 11px;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.debugbar-debug-key {
+    font-weight: bold;
+    color: #f39c12;
+}
+
+.debugbar-debug-slot {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: rgba(243, 156, 18, 0.15);
+    color: #f39c12;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.debugbar-debug-location {
+    color: #888;
+    font-size: 10px;
+}
+
+.debugbar-debug-data {
+    color: #e0e0e0;
+    font-size: 11px;
+    word-break: break-word;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 6px 8px;
+    border-radius: 3px;
+    margin-top: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Slot-specific colors */
+.debugbar-debug-variable {
+    border-left-color: #3498db;
+}
+.debugbar-debug-variable .debugbar-debug-key {
+    color: #3498db;
+}
+.debugbar-debug-variable .debugbar-debug-slot {
+    background: rgba(52, 152, 219, 0.15);
+    color: #3498db;
+}
+
+.debugbar-debug-array {
+    border-left-color: #9b59b6;
+}
+.debugbar-debug-array .debugbar-debug-key {
+    color: #9b59b6;
+}
+.debugbar-debug-array .debugbar-debug-slot {
+    background: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+}
+
+.debugbar-debug-object {
+    border-left-color: #e74c3c;
+}
+.debugbar-debug-object .debugbar-debug-key {
+    color: #e74c3c;
+}
+.debugbar-debug-object .debugbar-debug-slot {
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+}
+
+.debugbar-debug-sql {
+    border-left-color: #2ecc71;
+}
+.debugbar-debug-sql .debugbar-debug-key {
+    color: #2ecc71;
+}
+.debugbar-debug-sql .debugbar-debug-slot {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+.debugbar-debug-hook {
+    border-left-color: #1abc9c;
+}
+.debugbar-debug-hook .debugbar-debug-key {
+    color: #1abc9c;
+}
+.debugbar-debug-hook .debugbar-debug-slot {
+    background: rgba(26, 188, 156, 0.15);
+    color: #1abc9c;
+}
+
+.debugbar-debug-template {
+    border-left-color: #e67e22;
+}
+.debugbar-debug-template .debugbar-debug-key {
+    color: #e67e22;
+}
+.debugbar-debug-template .debugbar-debug-slot {
+    background: rgba(230, 126, 34, 0.15);
+    color: #e67e22;
+}
+
+.debugbar-debug-request {
+    border-left-color: #e84393;
+}
+.debugbar-debug-request .debugbar-debug-key {
+    color: #e84393;
+}
+.debugbar-debug-request .debugbar-debug-slot {
+    background: rgba(232, 67, 147, 0.15);
+    color: #e84393;
+}
+
+.debugbar-debug-session {
+    border-left-color: #00cec9;
+}
+.debugbar-debug-session .debugbar-debug-key {
+    color: #00cec9;
+}
+.debugbar-debug-session .debugbar-debug-slot {
+    background: rgba(0, 206, 201, 0.15);
+    color: #00cec9;
+}
+
+.debugbar-debug-benchmark {
+    border-left-color: #fd79a8;
+}
+.debugbar-debug-benchmark .debugbar-debug-key {
+    color: #fd79a8;
+}
+.debugbar-debug-benchmark .debugbar-debug-slot {
+    background: rgba(253, 121, 168, 0.15);
+    color: #fd79a8;
+}
+
+.debugbar-debug-custom {
+    border-left-color: #636e72;
+}
+.debugbar-debug-custom .debugbar-debug-key {
+    color: #636e72;
+}
+.debugbar-debug-custom .debugbar-debug-slot {
+    background: rgba(99, 110, 114, 0.15);
+    color: #636e72;
+}
+
+/* Additional slot-specific colors for new advanced slots */
+
+/* Event slots */
+.debugbar-debug-click { border-left-color: #e74c3c; }
+.debugbar-debug-click .debugbar-debug-key { color: #e74c3c; }
+.debugbar-debug-click .debugbar-debug-slot { background: rgba(231,76,60,0.15); color: #e74c3c; }
+
+.debugbar-debug-dblclick { border-left-color: #c0392b; }
+.debugbar-debug-dblclick .debugbar-debug-key { color: #c0392b; }
+.debugbar-debug-dblclick .debugbar-debug-slot { background: rgba(192,57,43,0.15); color: #c0392b; }
+
+.debugbar-debug-mousemove { border-left-color: #e67e22; }
+.debugbar-debug-mousemove .debugbar-debug-key { color: #e67e22; }
+.debugbar-debug-mousemove .debugbar-debug-slot { background: rgba(230,126,34,0.15); color: #e67e22; }
+
+.debugbar-debug-mouse { border-left-color: #d35400; }
+.debugbar-debug-mouse .debugbar-debug-key { color: #d35400; }
+.debugbar-debug-mouse .debugbar-debug-slot { background: rgba(211,84,0,0.15); color: #d35400; }
+
+.debugbar-debug-touch { border-left-color: #8e44ad; }
+.debugbar-debug-touch .debugbar-debug-key { color: #8e44ad; }
+.debugbar-debug-touch .debugbar-debug-slot { background: rgba(142,68,173,0.15); color: #8e44ad; }
+
+.debugbar-debug-scroll { border-left-color: #16a085; }
+.debugbar-debug-scroll .debugbar-debug-key { color: #16a085; }
+.debugbar-debug-scroll .debugbar-debug-slot { background: rgba(22,160,133,0.15); color: #16a085; }
+
+.debugbar-debug-resize { border-left-color: #27ae60; }
+.debugbar-debug-resize .debugbar-debug-key { color: #27ae60; }
+.debugbar-debug-resize .debugbar-debug-slot { background: rgba(39,174,96,0.15); color: #27ae60; }
+
+.debugbar-debug-focus { border-left-color: #2980b9; }
+.debugbar-debug-focus .debugbar-debug-key { color: #2980b9; }
+.debugbar-debug-focus .debugbar-debug-slot { background: rgba(41,128,185,0.15); color: #2980b9; }
+
+.debugbar-debug-keyboard { border-left-color: #2c3e50; }
+.debugbar-debug-keyboard .debugbar-debug-key { color: #2c3e50; }
+.debugbar-debug-keyboard .debugbar-debug-slot { background: rgba(44,62,80,0.15); color: #2c3e50; }
+
+.debugbar-debug-form { border-left-color: #d35400; }
+.debugbar-debug-form .debugbar-debug-key { color: #d35400; }
+.debugbar-debug-form .debugbar-debug-slot { background: rgba(211,84,0,0.15); color: #d35400; }
+
+.debugbar-debug-input { border-left-color: #1abc9c; }
+.debugbar-debug-input .debugbar-debug-key { color: #1abc9c; }
+.debugbar-debug-input .debugbar-debug-slot { background: rgba(26,188,156,0.15); color: #1abc9c; }
+
+.debugbar-debug-drag { border-left-color: #e84393; }
+.debugbar-debug-drag .debugbar-debug-key { color: #e84393; }
+.debugbar-debug-drag .debugbar-debug-slot { background: rgba(232,67,147,0.15); color: #e84393; }
+
+.debugbar-debug-animation { border-left-color: #00b894; }
+.debugbar-debug-animation .debugbar-debug-key { color: #00b894; }
+.debugbar-debug-animation .debugbar-debug-slot { background: rgba(0,184,148,0.15); color: #00b894; }
+
+.debugbar-debug-transition { border-left-color: #55efc4; }
+.debugbar-debug-transition .debugbar-debug-key { color: #55efc4; }
+.debugbar-debug-transition .debugbar-debug-slot { background: rgba(85,239,196,0.15); color: #55efc4; }
+
+/* DOM/Style slots */
+.debugbar-debug-style { border-left-color: #6c5ce7; }
+.debugbar-debug-style .debugbar-debug-key { color: #6c5ce7; }
+.debugbar-debug-style .debugbar-debug-slot { background: rgba(108,92,231,0.15); color: #6c5ce7; }
+
+.debugbar-debug-html { border-left-color: #a29bfe; }
+.debugbar-debug-html .debugbar-debug-key { color: #a29bfe; }
+.debugbar-debug-html .debugbar-debug-slot { background: rgba(162,155,254,0.15); color: #a29bfe; }
+
+.debugbar-debug-dom { border-left-color: #fd79a8; }
+.debugbar-debug-dom .debugbar-debug-key { color: #fd79a8; }
+.debugbar-debug-dom .debugbar-debug-slot { background: rgba(253,121,168,0.15); color: #fd79a8; }
+
+.debugbar-debug-selector { border-left-color: #fab1a0; }
+.debugbar-debug-selector .debugbar-debug-key { color: #fab1a0; }
+.debugbar-debug-selector .debugbar-debug-slot { background: rgba(250,177,160,0.15); color: #fab1a0; }
+
+.debugbar-debug-layout { border-left-color: #00cec9; }
+.debugbar-debug-layout .debugbar-debug-key { color: #00cec9; }
+.debugbar-debug-layout .debugbar-debug-slot { background: rgba(0,206,201,0.15); color: #00cec9; }
+
+.debugbar-debug-attr { border-left-color: #81ecec; }
+.debugbar-debug-attr .debugbar-debug-key { color: #81ecec; }
+.debugbar-debug-attr .debugbar-debug-slot { background: rgba(129,236,236,0.15); color: #81ecec; }
+
+.debugbar-debug-class { border-left-color: #74b9ff; }
+.debugbar-debug-class .debugbar-debug-key { color: #74b9ff; }
+.debugbar-debug-class .debugbar-debug-slot { background: rgba(116,185,255,0.15); color: #74b9ff; }
+
+.debugbar-debug-mutation { border-left-color: #0984e3; }
+.debugbar-debug-mutation .debugbar-debug-key { color: #0984e3; }
+.debugbar-debug-mutation .debugbar-debug-slot { background: rgba(9,132,227,0.15); color: #0984e3; }
+
+/* Network slots */
+.debugbar-debug-ajax { border-left-color: #00b894; }
+.debugbar-debug-ajax .debugbar-debug-key { color: #00b894; }
+.debugbar-debug-ajax .debugbar-debug-slot { background: rgba(0,184,148,0.15); color: #00b894; }
+
+.debugbar-debug-fetch { border-left-color: #00cec9; }
+.debugbar-debug-fetch .debugbar-debug-key { color: #00cec9; }
+.debugbar-debug-fetch .debugbar-debug-slot { background: rgba(0,206,201,0.15); color: #00cec9; }
+
+.debugbar-debug-network { border-left-color: #55efc4; }
+.debugbar-debug-network .debugbar-debug-key { color: #55efc4; }
+.debugbar-debug-network .debugbar-debug-slot { background: rgba(85,239,196,0.15); color: #55efc4; }
+
+.debugbar-debug-api { border-left-color: #81ecec; }
+.debugbar-debug-api .debugbar-debug-key { color: #81ecec; }
+.debugbar-debug-api .debugbar-debug-slot { background: rgba(129,236,236,0.15); color: #81ecec; }
+
+.debugbar-debug-websocket { border-left-color: #74b9ff; }
+.debugbar-debug-websocket .debugbar-debug-key { color: #74b9ff; }
+.debugbar-debug-websocket .debugbar-debug-slot { background: rgba(116,185,255,0.15); color: #74b9ff; }
+
+/* JS Runtime slots */
+.debugbar-debug-js_error { border-left-color: #e74c3c; }
+.debugbar-debug-js_error .debugbar-debug-key { color: #e74c3c; }
+.debugbar-debug-js_error .debugbar-debug-slot { background: rgba(231,76,60,0.15); color: #e74c3c; }
+
+.debugbar-debug-js_log { border-left-color: #b2bec3; }
+.debugbar-debug-js_log .debugbar-debug-key { color: #b2bec3; }
+.debugbar-debug-js_log .debugbar-debug-slot { background: rgba(178,190,195,0.15); color: #b2bec3; }
+
+.debugbar-debug-timer { border-left-color: #fdcb6e; }
+.debugbar-debug-timer .debugbar-debug-key { color: #fdcb6e; }
+.debugbar-debug-timer .debugbar-debug-slot { background: rgba(253,203,110,0.15); color: #fdcb6e; }
+
+.debugbar-debug-promise { border-left-color: #e17055; }
+.debugbar-debug-promise .debugbar-debug-key { color: #e17055; }
+.debugbar-debug-promise .debugbar-debug-slot { background: rgba(225,112,85,0.15); color: #e17055; }
+
+.debugbar-debug-storage { border-left-color: #00b894; }
+.debugbar-debug-storage .debugbar-debug-key { color: #00b894; }
+.debugbar-debug-storage .debugbar-debug-slot { background: rgba(0,184,148,0.15); color: #00b894; }
+
+.debugbar-debug-console { border-left-color: #636e72; }
+.debugbar-debug-console .debugbar-debug-key { color: #636e72; }
+.debugbar-debug-console .debugbar-debug-slot { background: rgba(99,110,114,0.15); color: #636e72; }
+
+.debugbar-debug-worker { border-left-color: #2d3436; }
+.debugbar-debug-worker .debugbar-debug-key { color: #2d3436; }
+.debugbar-debug-worker .debugbar-debug-slot { background: rgba(45,52,54,0.15); color: #2d3436; }
+
+/* PHP Advanced slots */
+.debugbar-debug-file { border-left-color: #d63031; }
+.debugbar-debug-file .debugbar-debug-key { color: #d63031; }
+.debugbar-debug-file .debugbar-debug-slot { background: rgba(214,48,49,0.15); color: #d63031; }
+
+.debugbar-debug-include { border-left-color: #e17055; }
+.debugbar-debug-include .debugbar-debug-key { color: #e17055; }
+.debugbar-debug-include .debugbar-debug-slot { background: rgba(225,112,85,0.15); color: #e17055; }
+
+.debugbar-debug-method { border-left-color: #00b894; }
+.debugbar-debug-method .debugbar-debug-key { color: #00b894; }
+.debugbar-debug-method .debugbar-debug-slot { background: rgba(0,184,148,0.15); color: #00b894; }
+
+.debugbar-debug-filter { border-left-color: #6c5ce7; }
+.debugbar-debug-filter .debugbar-debug-key { color: #6c5ce7; }
+.debugbar-debug-filter .debugbar-debug-slot { background: rgba(108,92,231,0.15); color: #6c5ce7; }
+
+.debugbar-debug-cache { border-left-color: #fdcb6e; }
+.debugbar-debug-cache .debugbar-debug-key { color: #fdcb6e; }
+.debugbar-debug-cache .debugbar-debug-slot { background: rgba(253,203,110,0.15); color: #fdcb6e; }
+
+.debugbar-debug-redirect { border-left-color: #e74c3c; }
+.debugbar-debug-redirect .debugbar-debug-key { color: #e74c3c; }
+.debugbar-debug-redirect .debugbar-debug-slot { background: rgba(231,76,60,0.15); color: #e74c3c; }
+
+.debugbar-debug-email { border-left-color: #0984e3; }
+.debugbar-debug-email .debugbar-debug-key { color: #0984e3; }
+.debugbar-debug-email .debugbar-debug-slot { background: rgba(9,132,227,0.15); color: #0984e3; }
+
+.debugbar-debug-permission { border-left-color: #e84393; }
+.debugbar-debug-permission .debugbar-debug-key { color: #e84393; }
+.debugbar-debug-permission .debugbar-debug-slot { background: rgba(232,67,147,0.15); color: #e84393; }
+
+.debugbar-debug-upload { border-left-color: #00b894; }
+.debugbar-debug-upload .debugbar-debug-key { color: #00b894; }
+.debugbar-debug-upload .debugbar-debug-slot { background: rgba(0,184,148,0.15); color: #00b894; }
+
+.debugbar-debug-image { border-left-color: #6c5ce7; }
+.debugbar-debug-image .debugbar-debug-key { color: #6c5ce7; }
+.debugbar-debug-image .debugbar-debug-slot { background: rgba(108,92,231,0.15); color: #6c5ce7; }
+
+.debugbar-debug-locale { border-left-color: #00cec9; }
+.debugbar-debug-locale .debugbar-debug-key { color: #00cec9; }
+.debugbar-debug-locale .debugbar-debug-slot { background: rgba(0,206,201,0.15); color: #00cec9; }
+
+.debugbar-debug-date { border-left-color: #74b9ff; }
+.debugbar-debug-date .debugbar-debug-key { color: #74b9ff; }
+.debugbar-debug-date .debugbar-debug-slot { background: rgba(116,185,255,0.15); color: #74b9ff; }
+
+.debugbar-debug-math { border-left-color: #a29bfe; }
+.debugbar-debug-math .debugbar-debug-key { color: #a29bfe; }
+.debugbar-debug-math .debugbar-debug-slot { background: rgba(162,155,254,0.15); color: #a29bfe; }
+
+/* Config/System slots */
+.debugbar-debug-config { border-left-color: #636e72; }
+.debugbar-debug-config .debugbar-debug-key { color: #636e72; }
+.debugbar-debug-config .debugbar-debug-slot { background: rgba(99,110,114,0.15); color: #636e72; }
+
+.debugbar-debug-constant { border-left-color: #b2bec3; }
+.debugbar-debug-constant .debugbar-debug-key { color: #b2bec3; }
+.debugbar-debug-constant .debugbar-debug-slot { background: rgba(178,190,195,0.15); color: #b2bec3; }
+
+.debugbar-debug-header { border-left-color: #dfe6e9; }
+.debugbar-debug-header .debugbar-debug-key { color: #dfe6e9; }
+.debugbar-debug-header .debugbar-debug-slot { background: rgba(223,230,233,0.15); color: #dfe6e9; }
+
+.debugbar-debug-cookie { border-left-color: #fdcb6e; }
+.debugbar-debug-cookie .debugbar-debug-key { color: #fdcb6e; }
+.debugbar-debug-cookie .debugbar-debug-slot { background: rgba(253,203,110,0.15); color: #fdcb6e; }
+
+.debugbar-debug-env { border-left-color: #74b9ff; }
+.debugbar-debug-env .debugbar-debug-key { color: #74b9ff; }
+.debugbar-debug-env .debugbar-debug-slot { background: rgba(116,185,255,0.15); color: #74b9ff; }
+
+.debugbar-debug-server { border-left-color: #0984e3; }
+.debugbar-debug-server .debugbar-debug-key { color: #0984e3; }
+.debugbar-debug-server .debugbar-debug-slot { background: rgba(9,132,227,0.15); color: #0984e3; }
+
+/* Performance slots */
+.debugbar-debug-memory { border-left-color: #fd79a8; }
+.debugbar-debug-memory .debugbar-debug-key { color: #fd79a8; }
+.debugbar-debug-memory .debugbar-debug-slot { background: rgba(253,121,168,0.15); color: #fd79a8; }
+
+.debugbar-debug-query { border-left-color: #a29bfe; }
+.debugbar-debug-query .debugbar-debug-key { color: #a29bfe; }
+.debugbar-debug-query .debugbar-debug-slot { background: rgba(162,155,254,0.15); color: #a29bfe; }
+
+.debugbar-debug-profile { border-left-color: #00b894; }
+.debugbar-debug-profile .debugbar-debug-key { color: #00b894; }
+.debugbar-debug-profile .debugbar-debug-slot { background: rgba(0,184,148,0.15); color: #00b894; }
+
+.debugbar-debug-trace { border-left-color: #6c5ce7; }
+.debugbar-debug-trace .debugbar-debug-key { color: #6c5ce7; }
+.debugbar-debug-trace .debugbar-debug-slot { background: rgba(108,92,231,0.15); color: #6c5ce7; }
+
+.debugbar-debug-counter { border-left-color: #e84393; }
+.debugbar-debug-counter .debugbar-debug-key { color: #e84393; }
+.debugbar-debug-counter .debugbar-debug-slot { background: rgba(232,67,147,0.15); color: #e84393; }
+
+/* --- No Debug --- */
+.debugbar-no-debug {
+    color: #f39c12;
+    font-style: italic;
+    padding: 8px 0;
+    text-align: center;
+}
+
+/* --- No Errors --- */
+.debugbar-no-errors {
+    color: #2ecc71;
+    font-style: italic;
+    padding: 8px 0;
+    text-align: center;
+}
+
+/* --- Scrollbar Styling --- */
+#debugbar-panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#debugbar-panel-content::-webkit-scrollbar-track {
+    background: #16162a;
+}
+
+#debugbar-panel-content::-webkit-scrollbar-thumb {
+    background: #2d2d5e;
+    border-radius: 3px;
+}
+
+#debugbar-panel-content::-webkit-scrollbar-thumb:hover {
+    background: #3d3d7e;
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    #debugbar-panel {
+        width: 94vw;
+        right: 3vw;
+        bottom: 76px;
+        max-height: 60vh;
+    }
+
+    #debugbar-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        bottom: 16px;
+        right: 16px;
+    }
+}

@@ -1,0 +1,32 @@
+<div id="debugbar-panel" class="debugbar-closed">
+    <div id="debugbar-panel-header">
+        <span id="debugbar-panel-title">MyBB Debug Bar</span>
+        <span id="debugbar-copy-btn" title="Copy tab content">
+            <svg id="debugbar-copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <svg id="debugbar-copied-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </span>
+        <span id="debugbar-panel-close" onclick="debugbarToggle()">&times;</span>
+    </div>
+    <div id="debugbar-panel-tabs">
+        {$tab_buttons}
+    </div>
+    <div id="debugbar-panel-content">
+        <div id="debugbar-pane-errors" class="debugbar-pane {$pane_errors_class}">
+            {$errors_html}
+        </div>
+        <div id="debugbar-pane-info" class="debugbar-pane {$pane_info_class}">
+            {$info_html}
+        </div>
+        <div id="debugbar-pane-debug" class="debugbar-pane {$pane_debug_class}">
+            {$debug_html}
+        </div>
+        <div id="debugbar-pane-console" class="debugbar-pane {$pane_console_class}">
+            {$console_html}
+        </div>
+    </div>
+</div>
