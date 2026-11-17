@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">MyBB Debug Bar</title>
+  <desc id="desc">A floating developer debug panel for MyBB, with Errors, Info, Debug, and Console tabs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101827"/>
+      <stop offset="1" stop-color="#172b3b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#37d6b2"/>
+      <stop offset="1" stop-color="#45a8ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="15" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="420" rx="26" fill="url(#bg)"/>
+  <circle cx="1050" cy="45" r="190" fill="#24516a" opacity=".17"/>
+  <circle cx="1130" cy="385" r="130" fill="#24c9a7" opacity=".08"/>
+  <path d="M0 335C180 270 270 435 470 370s270-100 430-45 210 7 300-30v125H0Z" fill="#193344" opacity=".35"/>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect x="64" y="58" width="42" height="42" rx="12" fill="url(#accent)"/>
+    <path d="m78 71 8 8-8 8m14 0h9" fill="none" stroke="#10202b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="122" y="86" fill="#a8c3d2" font-size="14" font-weight="700" letter-spacing="2.4">DEVELOPER TOOLKIT · MYBB 1.8</text>
+    <text x="64" y="164" fill="#f2f7fb" font-size="48" font-weight="750">MyBB Debug Bar</text>
+    <text x="66" y="207" fill="#b5c8d4" font-size="19">See what your forum is doing — on every page.</text>
+    <g font-size="13" font-weight="650">
+      <rect x="64" y="244" width="106" height="34" rx="17" fill="#1f3b4b"/><text x="82" y="266" fill="#71e5c4">PHP errors</text>
+      <rect x="180" y="244" width="102" height="34" rx="17" fill="#1f3b4b"/><text x="201" y="266" fill="#78c7ff">Console</text>
+      <rect x="292" y="244" width="94" height="34" rx="17" fill="#1f3b4b"/><text x="315" y="266" fill="#a9a0ff">Debug</text>
+      <rect x="396" y="244" width="142" height="34" rx="17" fill="#1f3b4b"/><text x="417" y="266" fill="#f5cb70">Query &amp; memory</text>
+    </g>
+    <text x="65" y="355" fill="#718d9e" font-size="13" font-weight="600" letter-spacing="1.5">CAPTURE · INSPECT · DEBUG</text>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect x="660" y="67" width="475" height="286" rx="16" fill="#101820" stroke="#355264" stroke-width="1.5"/>
+    <path d="M676 67h443a16 16 0 0 1 16 16v35H660V83a16 16 0 0 1 16-16Z" fill="#182733"/>
+    <circle cx="683" cy="91" r="5" fill="#ff6f75"/><circle cx="701" cy="91" r="5" fill="#f4c15d"/><circle cx="719" cy="91" r="5" fill="#53d6a5"/>
+    <text x="752" y="96" fill="#9eb4c1" font-size="12" font-weight="650">MYBB DEBUG BAR</text>
+    <rect x="1070" y="81" width="42" height="21" rx="10" fill="#38252c"/>
+    <circle cx="1082" cy="91.5" r="3" fill="#ff727c"/><text x="1090" y="95" fill="#ff9aa0" font-size="10" font-weight="700">2</text>
+    <g font-size="12" font-weight="650">
+      <text x="681" y="143" fill="#f0f5f8">Errors</text><text x="750" y="143" fill="#8ea5b2">Info</text><text x="797" y="143" fill="#8ea5b2">Debug</text><text x="856" y="143" fill="#8ea5b2">Console</text>
+      <rect x="678" y="153" width="52" height="2.5" rx="1" fill="url(#accent)"/>
+    </g>
+    <rect x="680" y="174" width="435" height="62" rx="9" fill="#211e26" stroke="#51343b"/>
+    <circle cx="699" cy="194" r="4" fill="#ff727c"/>
+    <text x="712" y="198" fill="#ff9aa0" font-size="12" font-weight="700">PHP Warning</text>
+    <text x="696" y="219" fill="#c4cbd0" font-size="11">Undefined array key · inc/plugins/example.php:42</text>
+    <rect x="680" y="247" width="207" height="85" rx="9" fill="#16232c"/>
+    <text x="696" y="269" fill="#8fa8b6" font-size="10" font-weight="700" letter-spacing="1">REQUEST INFO</text>
+    <text x="696" y="291" fill="#c7d5dd" font-size="11">MyBB version</text><text x="860" y="291" fill="#70dfbd" font-size="11" text-anchor="end">1.8.x</text>
+    <text x="696" y="313" fill="#c7d5dd" font-size="11">DB queries</text><text x="860" y="313" fill="#70c4ff" font-size="11" text-anchor="end">24</text>
+    <rect x="898" y="247" width="217" height="85" rx="9" fill="#16232c"/>
+    <text x="914" y="269" fill="#8fa8b6" font-size="10" font-weight="700" letter-spacing="1">CONSOLE</text>
+    <circle cx="916" cy="289" r="3" fill="#70dfbd"/><text x="927" y="293" fill="#c7d5dd" font-size="10">debugbar_log() ready</text>
+    <circle cx="916" cy="311" r="3" fill="#70c4ff"/><text x="927" y="315" fill="#c7d5dd" font-size="10">Custom debug data</text>
+  </g>
+</svg>
